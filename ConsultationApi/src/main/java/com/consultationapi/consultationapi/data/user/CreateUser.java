@@ -18,7 +18,7 @@ public class CreateUser extends ConnectionAttributes {
             preparedStatement.setString(3, user.getUserName());
             preparedStatement.setString(4,   user.getPassword());
             preparedStatement.setString(5, user.getEmail());
-            preparedStatement.setDate(6, user.getDate());
+            preparedStatement.setDate (6, Date.valueOf(user.getDate().toString()));
             preparedStatement.setString(7,   user.getType());
             preparedStatement.setDouble(8, 10.23);
             preparedStatement.executeUpdate();
@@ -35,7 +35,7 @@ public class CreateUser extends ConnectionAttributes {
             preparedStatement.setInt(1, typeUser.getId());
             preparedStatement.setString(2, typeUser.getAddress());
             preparedStatement.setInt(3, typeUser.getPhone());
-            preparedStatement.setInt(4,   typeUser.getCui());
+            preparedStatement.setLong(4,   typeUser.getCui());
             preparedStatement.executeUpdate();
             System.out.println("completaciond de informacion  guardada");
         } catch (SQLException e) {

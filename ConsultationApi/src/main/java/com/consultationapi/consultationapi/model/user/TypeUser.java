@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class TypeUser extends User{
     private  String address;
     private int phone;
-    private int cui;
+    private long cui;
     private ArrayList<ScheduleDoctor> hour;
     private ArrayList<CompleteInformation> specialty;
 }
