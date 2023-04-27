@@ -1,4 +1,4 @@
-package com.consultationapi.consultationapi.controller.user;
+package com.consultationapi.consultationapi.controller;
 
 import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.model.user.TypeUser;

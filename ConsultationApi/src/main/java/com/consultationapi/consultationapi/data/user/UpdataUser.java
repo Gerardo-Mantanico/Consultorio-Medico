@@ -9,7 +9,14 @@ import java.util.logging.Logger;
 
 public class UpdataUser extends ConnectionAttributes {
     public void  updateTypeUSer(TypeUser typeUser){
-        String query= "UPDATE usuario set saldo="+typeUser.getSaldo()+" where id="+typeUser.getId();
+        String query= "UPDATE usuario set saldo="+typeUser.getSaldo()+
+                ",nombre="+typeUser.getName()+
+                ",nombre_usuario="+typeUser.getUserName()+
+                ",contraseña="+typeUser.getPassword()+
+                ",correo="+typeUser.getEmail()+
+                ",fecha="+typeUser.getDate()+
+                ",tipo="+typeUser.getType()+
+                " where id="+typeUser.getId();
         try {
             stamente = con.conexion().createStatement();
             stamente.execute(query);

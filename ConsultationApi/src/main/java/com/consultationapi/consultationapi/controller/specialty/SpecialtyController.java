@@ -1,5 +1,6 @@
-package com.consultationapi.consultationapi.controller.user;
+package com.consultationapi.consultationapi.controller.specialty;
 
+import com.consultationapi.consultationapi.controller.Controller;
 import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.service.SpecialtyService;
 import com.consultationapi.consultationapi.utils.GsonUtils;
@@ -24,7 +25,7 @@ public class SpecialtyController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       controller.readList(request,response, specialtyService.readall());
+       //controller.readList(request,response, specialtyService.readall());
        controller.read(response,specialtyService.read(controller.obtenerId(request,response)));
     }
 

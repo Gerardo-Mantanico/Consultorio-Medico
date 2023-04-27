@@ -1,11 +1,16 @@
 package com.consultationapi.consultationapi;
 
 
+import com.consultationapi.consultationapi.data.completeInformation.time.ReadTime;
 import com.consultationapi.consultationapi.data.connection.DataConnection;
+import com.consultationapi.consultationapi.data.login.Consultl;
 import com.consultationapi.consultationapi.data.specialty.CreateSpecialty;
 import com.consultationapi.consultationapi.data.user.CreateUser;
+import com.consultationapi.consultationapi.model.comple_information.CompleteInformation;
+import com.consultationapi.consultationapi.model.login.Login;
 import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.model.user.TypeUser;
+import com.consultationapi.consultationapi.utils.GsonUtils;
 
 import java.math.BigDecimal;
 import java.sql.Date;
@@ -33,12 +38,14 @@ public class Ejecutable {
         CreateUser c = new CreateUser();
         c.createUser(typeUser);
         c.informationComplet(typeUser);*/
-        Specialty a= new Specialty();
-        a.setId(100);
-        a.setName("juan");
-        a.setDescription("especialidad");
-        CreateSpecialty c = new CreateSpecialty();
-        c.create(a);
+       /* Consultl c = new Consultl();
+        Login a  = new Login();
+        a.setUser("boby");
+        System.out.println(c.read(a));*/
+        ///
+        ReadTime readTime = new ReadTime();
+        readTime.readList(1);
+
     }
 }
 

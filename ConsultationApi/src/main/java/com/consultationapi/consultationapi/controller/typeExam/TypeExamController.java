@@ -1,5 +1,6 @@
-package com.consultationapi.consultationapi.controller.user;
+package com.consultationapi.consultationapi.controller.typeExam;
 
+import com.consultationapi.consultationapi.controller.Controller;
 import com.consultationapi.consultationapi.service.TypeExamService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;

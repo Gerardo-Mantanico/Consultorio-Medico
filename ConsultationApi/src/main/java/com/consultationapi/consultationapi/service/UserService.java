@@ -4,8 +4,10 @@ import com.consultationapi.consultationapi.data.user.CreateUser;
 import com.consultationapi.consultationapi.data.user.ListUser;
 import com.consultationapi.consultationapi.data.user.ReadUser;
 import com.consultationapi.consultationapi.data.user.UpdataUser;
+import com.consultationapi.consultationapi.model.time.ScheduleDoctor;
 import com.consultationapi.consultationapi.model.user.TypeUser;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserService {
@@ -31,6 +33,13 @@ public class UserService {
     }
     public void update(TypeUser typeUSer){
         updataUser.updateTypeUSer(typeUSer);
+    }
+
+    public TypeUser perfil(int id, ArrayList scheduleDoctor, ArrayList specialty){
+          var perfil= readUser.readTypeUser(id);
+          perfil.setHour(scheduleDoctor);
+          perfil.setSpecialty(specialty);
+        return perfil;
     }
 
 }
