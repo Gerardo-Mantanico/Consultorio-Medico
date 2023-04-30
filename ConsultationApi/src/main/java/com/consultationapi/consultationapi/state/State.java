@@ -8,6 +8,6 @@ package com.consultationapi.consultationapi.state;
  *
  * @author HP
  */
-public enum UserState {
-    MEDICO,ADMINISTRADOR,LABORATORIO,PACIENTE;
+public enum State {
+    MEDICO,ADMINISTRADOR,LABORATORIO,PACIENTE,ACEPTAR,RECHAZAR,PENDIENTE_REVISION;
 }

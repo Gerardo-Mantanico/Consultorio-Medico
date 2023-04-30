@@ -26,7 +26,7 @@ public class ReadUser  extends ConnectionAttributes {
                 user.setUserName(r.getString(3));
                 user.setPassword(r.getString(4));
                 user.setEmail(r.getString(5));
-                user.setDate(r.getDate(6));
+              //  user.setDate(r.getDate(6));
                 user.setType(r.getString(7));
                 user.setSaldo( BigDecimal.valueOf(r.getDouble(8)));
                 user.setAddress(r.getString(10));
@@ -59,5 +59,19 @@ public class ReadUser  extends ConnectionAttributes {
              Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
          }
         return admin;
+    }
+    public int getId(TypeUser typeUser){
+        int id=0;
+        String query="SELECT* FROM usuario where nombre_usuario='"+typeUser.getUserName()+"'";
+        try {
+            stamente = con.conexion().createStatement();
+            resultSet = stamente.executeQuery(query);
+            while(resultSet.next()) {
+                id = resultSet.getInt(1);
+            }
+        }catch (SQLException ex){
+            Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null,ex);
+        }
+        return id;
     }
 }

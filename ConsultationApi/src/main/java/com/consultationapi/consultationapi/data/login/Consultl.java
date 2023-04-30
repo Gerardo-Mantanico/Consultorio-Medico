@@ -17,8 +17,10 @@ public class Consultl extends ConnectionAttributes {
             resultSet=stamente.executeQuery(query);
             while (resultSet.next()){
                 Login login = new Login();
-                login.setEmail(resultSet.getString(3));
+                login.setId(resultSet.getInt(1));
                 login.setPassword(resultSet.getString(4));
+                login.setEmail(resultSet.getString(3));
+                login.setType(resultSet.getString(7));
                 login1=login;
             }
         } catch (SQLException ex) {

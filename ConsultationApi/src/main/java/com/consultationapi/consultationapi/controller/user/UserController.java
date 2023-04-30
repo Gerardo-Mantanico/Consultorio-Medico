@@ -2,7 +2,9 @@ package com.consultationapi.consultationapi.controller.user;
 
 import com.consultationapi.consultationapi.data.completeInformation.information_doctor.ReadIformationDoctor;
 import com.consultationapi.consultationapi.data.completeInformation.time.ReadTime;
+import com.consultationapi.consultationapi.data.login.Consultl;
 import com.consultationapi.consultationapi.model.comple_information.CompleteInformation;
+import com.consultationapi.consultationapi.model.login.Login;
 import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.model.time.ScheduleDoctor;
 import com.consultationapi.consultationapi.model.user.TypeUser;
@@ -16,6 +18,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 @WebServlet("/typeUser/*")
@@ -55,15 +59,11 @@ public class UserController extends HttpServlet {
     // POST TypeUser/id
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String pathInfo = request.getPathInfo();
-        if (pathInfo == null || pathInfo.equals("/")) {
-            var TypeUser = gsonTypeUser.readFromJson(request, TypeUser.class);
-            userService.createUser(TypeUser);
+        var newUser =gsonTypeUser.readFromJson(request,TypeUser.class);
+            System.out.println("El objeto que recibimos es "+newUser);
+            userService.createUser(newUser);
             response.setStatus(HttpServletResponse.SC_CREATED);
-            gsonTypeUser.sendAsJson(response, TypeUser);
-        } else {
-            response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-        }
+            gsonTypeUser.sendAsJson(response,newUser);
     }
 
     //PUT TyperUser

@@ -10,7 +10,7 @@ import java.util.ArrayList;
 @NoArgsConstructor @AllArgsConstructor
 public class TypeUser extends User{
     private  String address;
-    private int phone;
+    private long phone;
     private long cui;
     private ArrayList<ScheduleDoctor> hour;
     private ArrayList<CompleteInformation> specialty;

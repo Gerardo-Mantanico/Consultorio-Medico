@@ -16,13 +16,14 @@ public class Controller{
          gsonUtils=new GsonUtils<>();
      }
 
-    public  void readList(HttpServletRequest request, HttpServletResponse response,List list) throws IOException {
+    public  boolean readList(HttpServletRequest request, HttpServletResponse response,List list) throws IOException {
         String pathInfo = request.getPathInfo();
-        if (pathInfo == null || pathInfo.equals("/")) {
+        if (pathInfo==null || pathInfo.equals("/")) {
            gsonUtils.sendAsJson(response, list);
         }
+        return false;
     }
-    private int processPath(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public int processPath(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         String httpMethod = request.getMethod();
         if (httpMethod.equals("PUT") || httpMethod.equals("DELETE")) {

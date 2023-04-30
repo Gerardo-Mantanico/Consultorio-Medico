@@ -25,7 +25,8 @@ public class SpecialtyController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-       //controller.readList(request,response, specialtyService.readall());
+
+        controller.readList(request,response, specialtyService.readall());
        controller.read(response,specialtyService.read(controller.obtenerId(request,response)));
     }
 

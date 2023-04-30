@@ -30,6 +30,7 @@ public class ControllerLogin extends HttpServlet {
         GsonUtils<Login> gsonUtilss=new GsonUtils<>();
         Consultl consultar = new Consultl();
         var login =gsonUtilss.readFromJson(request, Login.class);
+        System.out.println(login);
         var user = consultar.read(login);
         if(user==null){
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
