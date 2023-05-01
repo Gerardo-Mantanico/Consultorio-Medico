@@ -9,10 +9,10 @@ import java.sql.*;
 
 public class CreateUser extends ConnectionAttributes {
     //meto para guardar usuarios en la base de datos
-    public  void createUser(User user) {
+    public  boolean createUser(User user) {
+        boolean state=false;
         String query="INSERT INTO usuario (id,nombre,nombre_usuario,contraseña,correo,fecha,tipo,saldo) VALUES (?,?,?,?,?,?,?,?)";
         try{
-
             preparedStatement  = con.conexion().prepareStatement(query);
             preparedStatement.setInt(1, user.getId());
             preparedStatement.setString(2, user.getName());
@@ -24,9 +24,12 @@ public class CreateUser extends ConnectionAttributes {
             preparedStatement.setDouble(8, user.getSaldo().doubleValue());
             preparedStatement.executeUpdate();
             System.out.println("Usuario registrado");
+            state=true;
         } catch (SQLException e) {
+            state=false;
             System.out.println("Error al crear usuario : " + e);
         }
+        return state;
     }
     public  void informationComplet(TypeUser typeUser) {
         String queryr = "INSERT INTO INFORMACION_USUARIOS (id_usuario,direccion,telefono,cui) VALUES (?,?,?,?)";

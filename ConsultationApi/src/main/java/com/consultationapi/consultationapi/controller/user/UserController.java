@@ -1,5 +1,4 @@
 package com.consultationapi.consultationapi.controller.user;
-
 import com.consultationapi.consultationapi.data.completeInformation.information_doctor.ReadIformationDoctor;
 import com.consultationapi.consultationapi.data.completeInformation.time.ReadTime;
 import com.consultationapi.consultationapi.data.login.Consultl;
@@ -61,9 +60,14 @@ public class UserController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var newUser =gsonTypeUser.readFromJson(request,TypeUser.class);
             System.out.println("El objeto que recibimos es "+newUser);
-            userService.createUser(newUser);
-            response.setStatus(HttpServletResponse.SC_CREATED);
-            gsonTypeUser.sendAsJson(response,newUser);
+            if(userService.createUser(newUser)==true){
+                response.setStatus(HttpServletResponse.SC_CREATED);
+                gsonTypeUser.sendAsJson(response,newUser);
+            }
+            else {
+              response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+            }
+
     }
 
     //PUT TyperUser

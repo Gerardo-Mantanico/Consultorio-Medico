@@ -22,20 +22,20 @@ public class UserService {
         readUser= new ReadUser();
         updataUser = new UpdataUser();
     }
-    public void createUser(TypeUser typeUser){
+    public boolean createUser(TypeUser typeUser){
+        boolean estado;
         if(typeUser.getSaldo()==null){
             typeUser.setSaldo(new BigDecimal(0.00));
         }
-        createUserss.createUser(typeUser);
+        estado=createUserss.createUser(typeUser);
         if(typeUser.getId()==0){
             int id =readUser.getId(typeUser);
             System.out.println("EL di es "+id);
             typeUser.setId(id);
             createUserss.informationComplet(typeUser);
-            return;
         }
         createUserss.informationComplet(typeUser);
-
+        return estado;
     }
     public List<TypeUser> readAll() {
         return listUser.listUser();

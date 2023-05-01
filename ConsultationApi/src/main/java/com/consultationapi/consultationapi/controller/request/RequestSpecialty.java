@@ -50,7 +50,7 @@ public class RequestSpecialty extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UpdateRequestSpecialty updateRequestSpecialty = new UpdateRequestSpecialty();
         var solicitud=gsonUtils.readFromJson(req,SpecialtyRequest.class);
-            
+
         if(updateRequestSpecialty.Update(solicitud)==true){
             gsonUtils.sendAsJson(resp,solicitud);
             resp.setStatus(HttpServletResponse.SC_OK);

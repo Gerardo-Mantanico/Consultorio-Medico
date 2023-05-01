@@ -3,6 +3,7 @@ package com.consultationapi.consultationapi.data.request.specialty;
 import com.consultationapi.consultationapi.data.connection.ConnectionAttributes;
 import com.consultationapi.consultationapi.data.user.CreateUser;
 import com.consultationapi.consultationapi.model.request.SpecialtyRequest;
+import com.consultationapi.consultationapi.state.State;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -11,7 +12,7 @@ import java.util.logging.Logger;
 
 public class ListSpecialty extends ConnectionAttributes {
     public ArrayList list(){
-        String query="SELECT* FROM solicitud_especialidad";
+        String query="SELECT* FROM solicitud_especialidad WHERE estado='"+State.PENDIENTE_REVISION.name()+"'";
         ArrayList<SpecialtyRequest> list= new ArrayList<>();
         try {
              stamente=con.conexion().createStatement();
