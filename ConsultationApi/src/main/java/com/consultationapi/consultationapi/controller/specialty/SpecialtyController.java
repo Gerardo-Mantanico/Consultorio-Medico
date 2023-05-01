@@ -25,9 +25,15 @@ public class SpecialtyController extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String pathInfo=request.getPathInfo();
+        if(pathInfo==null || pathInfo.equals("/")) {
+            controller.readList(request,response, specialtyService.readall());
+        }
+        else {
+            controller.read(response,specialtyService.read(controller.obtenerId(request,response)));
+        }
 
-        controller.readList(request,response, specialtyService.readall());
-       controller.read(response,specialtyService.read(controller.obtenerId(request,response)));
+
     }
 
     @Override

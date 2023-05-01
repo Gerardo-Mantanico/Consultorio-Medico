@@ -51,7 +51,7 @@ public class ListUser extends ConnectionAttributes {
                 admin.setUserName(resultSet.getString(3));
                 admin.setPassword(resultSet.getString(4));
                 admin.setEmail(resultSet.getString(5));
-              //  admin.setDate(resultSet.getDate(6));
+                admin.setDate(resultSet.getDate(6));
                 admin.setType(resultSet.getString(7));
                 admin.setSaldo( BigDecimal.valueOf(resultSet.getDouble(8)));
                 list.add(admin);

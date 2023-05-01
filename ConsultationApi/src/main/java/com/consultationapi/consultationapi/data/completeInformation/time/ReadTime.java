@@ -20,8 +20,8 @@ public class ReadTime extends ConnectionAttributes {
              while (resultSet.next()){
                  ScheduleDoctor scheduleDoctor = new ScheduleDoctor();
                  scheduleDoctor.setId(resultSet.getInt(1));
-                 scheduleDoctor.setStart(resultSet.getTime(2));
-                 scheduleDoctor.setEnd(resultSet.getTime(3));
+                 scheduleDoctor.setStart (resultSet.getTime(2).toString());
+                 scheduleDoctor.setEnd(resultSet.getTime(3).toString());
                  list.add(scheduleDoctor);
              }
          resultSet.close();

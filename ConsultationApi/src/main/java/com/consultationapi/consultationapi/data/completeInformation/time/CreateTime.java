@@ -8,17 +8,21 @@ import java.sql.Time;
 
 public class CreateTime extends ConnectionAttributes {
 
-    public  void create(ScheduleDoctor doctor){
-        String query="insert into lista_horarios (id_medico,horario_inicial,horario_final,) values (?,?,?)";
+    public  boolean create(ScheduleDoctor doctor){
+        boolean state=true;
+        String query="insert into lista_horarios (id_medico,horario_inicial,horario_final) values (?,?,?)";
         try {
             preparedStatement=con.conexion().prepareStatement(query);
             preparedStatement.setInt(1,doctor.getId());
-            preparedStatement.setTime(2, doctor.getStart());
-            preparedStatement.setTime(3, doctor.getEnd());
+            preparedStatement.setTime(2, Time.valueOf(doctor.getStart()+":00"));
+            preparedStatement.setTime(3, Time.valueOf(doctor.getEnd()+":00"));
             preparedStatement.executeUpdate();
+            System.out.println("hora te atencion guardada");
+            state=false;
         }catch (SQLException e){
+            state=true;
             System.out.println("error a la hora de guardar en "+e);
         }
-
+        return state;
     }
 }
