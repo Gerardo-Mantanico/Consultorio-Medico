@@ -15,7 +15,7 @@ public class ConstructionHistorialConsultas {
     public ArrayList<ReporteConsul> construc(int id, LocalDate dateStart , LocalDate dateEnd){
             ArrayList<ReporteConsul>  list= new ArrayList<>();
         for(  ReporteConsul  report: readRecord.consulta(id,dateStart,dateEnd)) {
-                report.setNameExam(readRecord.examenes(id,dateStart,dateEnd));
+                report.setNameExam(readRecord.examenes(id,report.getId(), dateStart,dateEnd));
              list.add(report);
         }
         return list;

@@ -30,8 +30,6 @@ public class Top5LabController extends HttpServlet {
         LocalDate fecha = LocalDate.parse(fechaTexto);
         gsonUtils.sendAsJson(resp,top5Pacienes.construc(10,fecha,fecha));
 
-
-
     }
 
     @Override
