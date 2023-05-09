@@ -43,14 +43,5 @@ public class ReportsAdmin extends HttpServlet {
             gsonUtils.sendAsJson(resp,top5Lab.costruc());
         }
 
-
-      /* else if(splits[1].equals(1)){
-            gsonUtils.sendAsJson(resp,top5Lab.costruc());
-        }*/
-
-
-       /* GsonUtils<PercentageHistory> gsonUtils = new GsonUtils<>();
-        histPorcentaje porcentaje= new histPorcentaje();
-        gsonUtils.sendAsJson(resp,porcentaje.historial());*/
     }
 }
