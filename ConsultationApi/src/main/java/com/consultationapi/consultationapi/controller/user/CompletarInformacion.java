@@ -3,6 +3,8 @@ package com.consultationapi.consultationapi.controller.user;
 import com.consultationapi.consultationapi.controller.Controller;
 import com.consultationapi.consultationapi.data.completeInformation.information_doctor.CreateIformationDoctor;
 import com.consultationapi.consultationapi.data.completeInformation.information_doctor.ReadIformationDoctor;
+import com.consultationapi.consultationapi.data.completeInformation.information_doctor.UpdateInformationDoctor;
+import com.consultationapi.consultationapi.data.completeInformation.information_lab.UpdateInformationlab;
 import com.consultationapi.consultationapi.model.comple_information.CompleteInformation;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
@@ -23,6 +25,11 @@ public class CompletarInformacion extends HttpServlet {
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+        String path=req.getPathInfo();
+        if(path==null || path.equals("/")){
+
+
+        }
         ReadIformationDoctor readIformationDoctor = new ReadIformationDoctor();
         int id = controller.obtenerId(req,resp);
         gsonUtils.sendAsJson(resp,readIformationDoctor.readlist(id));
@@ -45,11 +52,19 @@ public class CompletarInformacion extends HttpServlet {
     }
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-    }
-
-    @Override
-    protected void doDelete(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        var newEspecialidad = gsonUtils.readFromJson(req,CompleteInformation.class);
+        System.out.println(newEspecialidad);
+        UpdateInformationDoctor updateInformationDoctor =new UpdateInformationDoctor();
+        if( updateInformationDoctor.Update(newEspecialidad) ==true){
+            gsonUtils.sendAsJson(resp,newEspecialidad);
+            resp.setStatus(HttpServletResponse.SC_CREATED);
+        }
+        else {
+            gsonUtils.sendAsJson(resp,null);
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
     }
 }
+
+
+

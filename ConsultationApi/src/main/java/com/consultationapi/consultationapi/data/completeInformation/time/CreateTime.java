@@ -10,12 +10,13 @@ public class CreateTime extends ConnectionAttributes {
 
     public  boolean create(ScheduleDoctor doctor){
         boolean state=true;
-        String query="insert into lista_horarios (id_medico,horario_inicial,horario_final) values (?,?,?)";
+        String query="insert into lista_horarios (id,id_medico,horario_inicial,horario_final) values (?,?,?,?)";
         try {
             preparedStatement=con.conexion().prepareStatement(query);
             preparedStatement.setInt(1,doctor.getId());
-            preparedStatement.setTime(2, Time.valueOf(doctor.getStart()+":00"));
-            preparedStatement.setTime(3, Time.valueOf(doctor.getEnd()+":00"));
+            preparedStatement.setInt(2,doctor.getIdDoctor());
+            preparedStatement.setTime(3, Time.valueOf(doctor.getStart()+":00"));
+            preparedStatement.setTime(4, Time.valueOf(doctor.getEnd()+":00"));
             preparedStatement.executeUpdate();
             System.out.println("hora te atencion guardada");
             state=false;

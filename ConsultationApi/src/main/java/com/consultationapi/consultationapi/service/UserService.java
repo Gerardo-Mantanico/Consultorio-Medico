@@ -48,9 +48,15 @@ public class UserService {
     }
 
     public TypeUser perfil(int id, ArrayList scheduleDoctor, ArrayList specialty){
-          var perfil= readUser.readTypeUser(id);
-          perfil.setHour(scheduleDoctor);
-          perfil.setSpecialty(specialty);
+         TypeUser perfil = new TypeUser();
+          try{
+              perfil= readUser.readTypeUser(id);
+              perfil.setHour(scheduleDoctor);
+              perfil.setSpecialty(specialty);
+          }catch (Exception ex){
+              perfil= readUser.readTypeUser(id);
+          }
+
         return perfil;
     }
 

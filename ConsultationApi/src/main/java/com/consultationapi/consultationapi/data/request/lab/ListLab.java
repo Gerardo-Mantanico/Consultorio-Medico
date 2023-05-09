@@ -21,7 +21,7 @@ public class ListLab extends ConnectionAttributes {
              while(resultSet.next()){
                  RequestExamType requestExamType= new RequestExamType();
                  requestExamType.setId(resultSet.getInt(1));
-                 requestExamType.setIdLaboratory(resultSet.getInt(2));
+                 requestExamType.setIdDoctor(resultSet.getInt(2));
                  requestExamType.setName(resultSet.getString(3));
                  requestExamType.setDescription(resultSet.getString(4));
                  requestExamType.setState(resultSet.getString(5));
@@ -42,7 +42,7 @@ public class ListLab extends ConnectionAttributes {
             while(resultSet.next()){
                 RequestExamType requestExamType= new RequestExamType();
                 requestExamType.setId(resultSet.getInt(1));
-                requestExamType.setIdLaboratory(resultSet.getInt(2));
+                requestExamType.setIdDoctor(resultSet.getInt(2));
                 requestExamType.setName(resultSet.getString(3));
                 requestExamType.setDescription(resultSet.getString(4));
                 requestExamType.setState(resultSet.getString(5));

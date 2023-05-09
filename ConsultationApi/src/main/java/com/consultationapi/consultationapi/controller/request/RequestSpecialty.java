@@ -5,6 +5,7 @@ import com.consultationapi.consultationapi.data.request.lab.ListLab;
 import com.consultationapi.consultationapi.data.request.specialty.CreateRequest;
 import com.consultationapi.consultationapi.data.request.specialty.ListSpecialty;
 import com.consultationapi.consultationapi.data.request.specialty.UpdateRequestSpecialty;
+import com.consultationapi.consultationapi.data.specialty.CreateSpecialty;
 import com.consultationapi.consultationapi.model.request.SpecialtyRequest;
 import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.state.State;
@@ -50,9 +51,16 @@ public class RequestSpecialty extends HttpServlet {
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         UpdateRequestSpecialty updateRequestSpecialty = new UpdateRequestSpecialty();
         var solicitud=gsonUtils.readFromJson(req,SpecialtyRequest.class);
-
         if(updateRequestSpecialty.Update(solicitud)==true){
             gsonUtils.sendAsJson(resp,solicitud);
+            if(solicitud.getState().equals(State.ACEPTADO.name())){
+                Specialty specialty = new Specialty();
+                CreateSpecialty createSpecialty = new CreateSpecialty();
+                specialty.setId(0);
+                specialty.setName(solicitud.getName());
+                specialty.setDescription(solicitud.getDescription());
+                createSpecialty.create(specialty);
+            }
             resp.setStatus(HttpServletResponse.SC_OK);
         }
         else{

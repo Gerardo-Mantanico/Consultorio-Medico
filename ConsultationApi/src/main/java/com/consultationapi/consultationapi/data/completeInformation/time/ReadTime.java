@@ -11,7 +11,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class ReadTime extends ConnectionAttributes {
-    public ArrayList readList(int id){
+    public ArrayList<ScheduleDoctor> readList(int id){
         String query="select* from lista_horarios where id_medico="+id;
         ArrayList<ScheduleDoctor> list = new ArrayList<>();
          try {
@@ -20,8 +20,9 @@ public class ReadTime extends ConnectionAttributes {
              while (resultSet.next()){
                  ScheduleDoctor scheduleDoctor = new ScheduleDoctor();
                  scheduleDoctor.setId(resultSet.getInt(1));
-                 scheduleDoctor.setStart (resultSet.getTime(2).toString());
-                 scheduleDoctor.setEnd(resultSet.getTime(3).toString());
+                 scheduleDoctor.setIdDoctor (resultSet.getInt(2));
+                 scheduleDoctor.setStart (resultSet.getTime(3).toString());
+                 scheduleDoctor.setEnd(resultSet.getTime(4).toString());
                  list.add(scheduleDoctor);
              }
          resultSet.close();
@@ -30,4 +31,6 @@ public class ReadTime extends ConnectionAttributes {
          }
         return list;
     }
+
+
 }

@@ -9,19 +9,21 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class readIformationLab extends ConnectionAttributes {
+public class ReadIformationLab extends ConnectionAttributes {
 
-    public ArrayList readlist(){
-        String query="";
-        ArrayList<CompleteInformation> list =null;
+    public ArrayList readlist(int id){
+        String query="SELECT*  FROM lista_examenes_lab join tipos_examenes on   id_examen=tipos_examenes.id where id_lab="+id;
+        ArrayList<CompleteInformation> list = new ArrayList<>();
         try {
             stamente=con.conexion().createStatement();
             resultSet=stamente.executeQuery(query);
             while(resultSet.next()){
                 CompleteInformation completeInformation= new CompleteInformation();
-                completeInformation.setId_type(resultSet.getInt(1));
-                completeInformation.setId_type(resultSet.getInt(2));
-                completeInformation.setCost(resultSet.getBigDecimal(3));
+                completeInformation.setId(resultSet.getInt(1));
+                completeInformation.setId_user(resultSet.getInt(2));
+                completeInformation.setId_type(resultSet.getInt(3));
+                completeInformation.setCost(resultSet.getBigDecimal(4));
+                completeInformation.setName(resultSet.getString(6));
                 list.add(completeInformation);
             }
         }catch (SQLException ex) {

@@ -26,6 +26,7 @@ public class Controller{
     public int processPath(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String pathInfo = request.getPathInfo();
         String httpMethod = request.getMethod();
+
         if (httpMethod.equals("PUT") || httpMethod.equals("DELETE")) {
             if (pathInfo == null || pathInfo.equals("/")) {
                 response.sendError(HttpServletResponse.SC_BAD_REQUEST);

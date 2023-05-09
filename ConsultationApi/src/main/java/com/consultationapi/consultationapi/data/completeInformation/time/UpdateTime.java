@@ -10,14 +10,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UpdateTime extends ConnectionAttributes {
-    public void Update(ScheduleDoctor hour){
-        String query="update lista_horarios set horario_inicial ='"+hour.getStart()+"' ,  horario_final='"+hour.getEnd()+"'  where id_medico="+hour.getId();
+    public boolean Update(ScheduleDoctor hour){
+        boolean estado=false;
+        String query="update lista_horarios set horario_inicial ='"+hour.getStart()+"',  horario_final='"+hour.getEnd()+"'  where id="+hour.getId();
         try {
             stamente = con.conexion().createStatement();
             stamente.execute(query);
             con.conexion().close();
+            estado=true;
         } catch (SQLException ex) {
+            estado=false;
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return estado;
     }
 }

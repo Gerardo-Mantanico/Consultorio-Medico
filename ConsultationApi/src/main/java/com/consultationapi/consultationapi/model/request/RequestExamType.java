@@ -5,7 +5,7 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor
 public class RequestExamType {
         private int id;
-        private int IdLaboratory;
+        private int IdDoctor;
         private String name;
         private String description;
         private  String state;

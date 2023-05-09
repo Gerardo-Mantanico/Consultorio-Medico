@@ -17,7 +17,7 @@ public class UpdataRequest  extends ConnectionAttributes {
             stamente.execute(query);
             con.conexion().close();
         } catch (SQLException ex) {
-            Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println("Erro en "+ex);
         }
     }
 }

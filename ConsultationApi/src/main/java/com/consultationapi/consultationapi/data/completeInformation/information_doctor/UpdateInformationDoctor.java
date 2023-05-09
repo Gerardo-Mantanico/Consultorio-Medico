@@ -9,14 +9,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class UpdateInformationDoctor extends ConnectionAttributes{
-    public void Update(CompleteInformation complement){
-        String query= "UPDATE lista_especialidad set precio_consulta="+complement.getCost()+" where id="+complement.getId_user();
+    public boolean Update(CompleteInformation complement){
+        boolean estado=false;
+        String query= "UPDATE lista_especialidad set precio_consulta="+complement.getCost()+" where id="+complement.getId();
         try {
             stamente = con.conexion().createStatement();
             stamente.execute(query);
             con.conexion().close();
+            estado=true;
         } catch (SQLException ex) {
+            estado=false;
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return estado;
     }
 }

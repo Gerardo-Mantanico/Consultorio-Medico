@@ -19,7 +19,7 @@ public class CreateUser extends ConnectionAttributes {
             preparedStatement.setString(3, user.getUserName());
             preparedStatement.setString(4,   user.getPassword());
             preparedStatement.setString(5, user.getEmail());
-            preparedStatement.setDate (6, new java.sql.Date(user.getDate().getTime()) );
+            preparedStatement.setDate (6, new java.sql.Date(user.getDate().getTime()));
             preparedStatement.setString(7,   user.getType());
             preparedStatement.setDouble(8, user.getSaldo().doubleValue());
             preparedStatement.executeUpdate();

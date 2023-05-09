@@ -5,6 +5,7 @@ import com.consultationapi.consultationapi.data.completeInformation.information_
 import com.consultationapi.consultationapi.data.completeInformation.information_doctor.ReadIformationDoctor;
 import com.consultationapi.consultationapi.data.completeInformation.time.CreateTime;
 import com.consultationapi.consultationapi.data.completeInformation.time.ReadTime;
+import com.consultationapi.consultationapi.data.completeInformation.time.UpdateTime;
 import com.consultationapi.consultationapi.model.comple_information.CompleteInformation;
 import com.consultationapi.consultationapi.model.time.ScheduleDoctor;
 import com.consultationapi.consultationapi.utils.GsonUtils;
@@ -50,7 +51,15 @@ public class HorarioAtencion extends HttpServlet {
 
     @Override
     protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+        var hour =gsonUtils.readFromJson(req,ScheduleDoctor.class);
+        UpdateTime updateTime = new UpdateTime();
+        if(updateTime.Update(hour)==true){
+            gsonUtils.sendAsJson(resp,hour);
+            resp.setStatus(HttpServletResponse.SC_OK);
+        }
+        else{
+            resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
+        }
     }
 
     @Override

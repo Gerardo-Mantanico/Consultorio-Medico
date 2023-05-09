@@ -3,6 +3,7 @@ package com.consultationapi.consultationapi.data.user;
 import com.consultationapi.consultationapi.data.connection.ConnectionAttributes;
 import com.consultationapi.consultationapi.model.user.TypeUser;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,27 @@ public class UpdataUser extends ConnectionAttributes {
             stamente.execute(query);
             con.conexion().close();
         } catch (SQLException ex) {
+            Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    public void recharge(int id, BigDecimal saldo){
+        String query="UPDATE usuario SET saldo = saldo+"+saldo+" WHERE id="+id;
+        try {
+            stamente=con.conexion().createStatement();
+            stamente.executeUpdate(query);
+            con.conexion().close();
+        }catch (SQLException ex){
+            Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void  discount(int id, BigDecimal saldo){
+        String query="UPDATE usuario SET saldo = saldo-"+saldo+" WHERE id="+id;
+        try {
+            stamente=con.conexion().createStatement();
+            stamente.executeUpdate(query);
+            con.conexion().close();
+        }catch (SQLException ex){
             Logger.getLogger(CreateUser.class.getName()).log(Level.SEVERE, null, ex);
         }
     }

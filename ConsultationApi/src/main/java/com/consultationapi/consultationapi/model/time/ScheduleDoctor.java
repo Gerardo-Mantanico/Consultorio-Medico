@@ -11,6 +11,7 @@ import java.util.Date;
 @Getter @Setter
 public class ScheduleDoctor {
     private int id;
+    private int idDoctor;
     private String start;
     private String end;
 }
