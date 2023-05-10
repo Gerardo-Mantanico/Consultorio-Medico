@@ -1,13 +1,11 @@
 package com.consultationapi.consultationapi.controller.request;
 
-import com.consultationapi.consultationapi.controller.Controller;
-import com.consultationapi.consultationapi.data.request.lab.ListLab;
 import com.consultationapi.consultationapi.data.request.specialty.CreateRequest;
 import com.consultationapi.consultationapi.data.request.specialty.ListSpecialty;
 import com.consultationapi.consultationapi.data.request.specialty.UpdateRequestSpecialty;
 import com.consultationapi.consultationapi.data.specialty.CreateSpecialty;
+import com.consultationapi.consultationapi.model.model.Especialidad;
 import com.consultationapi.consultationapi.model.request.SpecialtyRequest;
-import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.state.State;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
@@ -16,7 +14,6 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import java.awt.*;
 import java.io.IOException;
 
 @WebServlet("/RequestsSpecialty/*")
@@ -54,11 +51,11 @@ public class RequestSpecialty extends HttpServlet {
         if(updateRequestSpecialty.Update(solicitud)==true){
             gsonUtils.sendAsJson(resp,solicitud);
             if(solicitud.getState().equals(State.ACEPTADO.name())){
-                Specialty specialty = new Specialty();
+                Especialidad specialty = new Especialidad();
                 CreateSpecialty createSpecialty = new CreateSpecialty();
                 specialty.setId(0);
-                specialty.setName(solicitud.getName());
-                specialty.setDescription(solicitud.getDescription());
+                specialty.setNombre(solicitud.getName());
+                specialty.setDescripcion(solicitud.getDescription());
                 createSpecialty.create(specialty);
             }
             resp.setStatus(HttpServletResponse.SC_OK);

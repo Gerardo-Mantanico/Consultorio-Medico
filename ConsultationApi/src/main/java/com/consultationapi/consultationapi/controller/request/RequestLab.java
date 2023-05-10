@@ -5,9 +5,8 @@ import com.consultationapi.consultationapi.data.request.lab.CreateRequestLab;
 import com.consultationapi.consultationapi.data.request.lab.ListLab;
 import com.consultationapi.consultationapi.data.request.lab.UpdataRequest;
 import com.consultationapi.consultationapi.data.type_exam.CreateTypeExam;
+import com.consultationapi.consultationapi.model.model.TipoExamen;
 import com.consultationapi.consultationapi.model.request.RequestExamType;
-import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
-import com.consultationapi.consultationapi.model.specialtyExam.TypeExam;
 import com.consultationapi.consultationapi.state.State;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
@@ -55,10 +54,10 @@ public class RequestLab extends HttpServlet {
         System.out.println("recibiendo objeto: "+requestExam);
         updataRequest.Update(requestExam);
         if(requestExam.getState().equals(State.ACEPTADO.name())){
-            TypeExam typeExam= new TypeExam();
+            TipoExamen typeExam= new TipoExamen();
             typeExam.setId(0);
-            typeExam.setName(requestExam.getName());
-            typeExam.setDescription(requestExam.getDescription());
+            typeExam.setNombre(requestExam.getName());
+            typeExam.setDescripcion(requestExam.getDescription());
             CreateTypeExam createTypeExam=new CreateTypeExam();
             createTypeExam.create(typeExam);
             gsonUtils.sendAsJson(resp,requestExam);

@@ -1,8 +1,5 @@
 package com.consultationapi.consultationapi.controller;
 
-import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
-import com.consultationapi.consultationapi.model.user.TypeUser;
-import com.consultationapi.consultationapi.service.SpecialtyService;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;

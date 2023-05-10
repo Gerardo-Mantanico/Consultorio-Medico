@@ -1,13 +1,9 @@
 package com.consultationapi.consultationapi.controller.user;
 import com.consultationapi.consultationapi.data.completeInformation.information_doctor.ReadIformationDoctor;
 import com.consultationapi.consultationapi.data.completeInformation.time.ReadTime;
-import com.consultationapi.consultationapi.data.login.Consultl;
 import com.consultationapi.consultationapi.model.comple_information.CompleteInformation;
-import com.consultationapi.consultationapi.model.login.Login;
-import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.model.time.ScheduleDoctor;
 import com.consultationapi.consultationapi.model.user.TypeUser;
-import com.consultationapi.consultationapi.service.SpecialtyService;
 import com.consultationapi.consultationapi.service.UserService;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
@@ -17,9 +13,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.sql.Date;
-import java.time.LocalDate;
-import java.util.ArrayList;
 
 @WebServlet("/typeUser/*")
 public class UserController extends HttpServlet {

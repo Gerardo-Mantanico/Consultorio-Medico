@@ -1,6 +1,6 @@
 package com.consultationapi.consultationapi.model.consultation;
 
-import com.consultationapi.consultationapi.model.specialtyExam.TypeExam;
+import com.consultationapi.consultationapi.model.model.TipoExamen;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class Consultation {
     private int doctor;
     private int specialty;
     private double porcentage;
-    private ArrayList<TypeExam> exams;
+    private ArrayList<TipoExamen> exams;
     private Date dataStart;
     private Date dataEnd;
     private BigDecimal precio;

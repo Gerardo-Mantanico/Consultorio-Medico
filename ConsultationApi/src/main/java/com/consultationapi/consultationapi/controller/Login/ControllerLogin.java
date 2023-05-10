@@ -2,7 +2,6 @@ package com.consultationapi.consultationapi.controller.Login;
 
 import com.consultationapi.consultationapi.data.login.Consultl;
 import com.consultationapi.consultationapi.model.login.Login;
-import com.consultationapi.consultationapi.model.specialtyExam.Specialty;
 import com.consultationapi.consultationapi.model.user.TypeUser;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
