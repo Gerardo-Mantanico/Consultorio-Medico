@@ -4,6 +4,7 @@ import com.consultationapi.consultationapi.data.connection.ConnectionAttributes;
 import com.consultationapi.consultationapi.model.patient.RequestEx;
 import com.consultationapi.consultationapi.state.State;
 
+import java.math.BigDecimal;
 import java.sql.SQLException;
 import java.util.Date;
 
@@ -15,7 +16,10 @@ public class CreateRequestExam extends ConnectionAttributes {
             preparedStatement.setInt(1,0);
             preparedStatement.setInt(2,requestEx.getIdPaciente());
             preparedStatement.setInt(3,requestEx.getIdLab());
-            preparedStatement.setDouble(4,porcentaje);
+            BigDecimal porcentaj =  new BigDecimal(porcentaje);
+            BigDecimal porciento = new BigDecimal("100");
+            BigDecimal resultado = porcentaj.divide(porciento, 5, BigDecimal.ROUND_HALF_UP);
+            preparedStatement.setBigDecimal(4, resultado);
             Date fechaActual = new Date();
             preparedStatement.setDate(5,new java.sql.Date(fechaActual.getTime()));
             preparedStatement.setDate(6,null);

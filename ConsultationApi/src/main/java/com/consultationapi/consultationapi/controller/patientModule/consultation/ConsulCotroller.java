@@ -1,6 +1,7 @@
 package com.consultationapi.consultationapi.controller.patientModule.consultation;
 
 import com.consultationapi.consultationapi.model.consultation.Consultation;
+import com.consultationapi.consultationapi.model.doctor.ver_consultas.SolicitudesPendientes;
 import com.consultationapi.consultationapi.service.ConsultationService;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
@@ -25,5 +26,18 @@ public class ConsulCotroller extends HttpServlet {
         this.consultationService.Cread(newConsul);
         gsonUtils.sendAsJson(resp,newConsul);
         resp.setStatus(HttpServletResponse.SC_OK);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        GsonUtils<SolicitudesPendientes> solicitudesPendientesGsonUtils = new GsonUtils<>();
+        gsonUtils.sendAsJson(resp,consultationService.Solicitudes_pendienes(124));
+        resp.setStatus(HttpServletResponse.SC_OK);
+    }
+
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
     }
 }

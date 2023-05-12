@@ -49,6 +49,11 @@ public class ReadTopPaciente extends ConnectionAttributes {
 
     public BigDecimal total(int idpaciente, int idLab){
         BigDecimal cantidad = new BigDecimal(10.5);
+       /* String query="SELECT SUM(l.costo * (1 - s.porcentaje)) as costo_total " +
+                "FROM solicitud_examenes  " +
+                "JOIN lista_examenes_solicitud l ON s.id = l.id_solicitud " +
+                "WHERE s.id_paciente ="+idpaciente+"  AND s.id_lab ="+idLab;
+*/
         String query="select SUM(costo)  from solicitud_examenes s join lista_examenes_solicitud l  on  s.id=l.id_solicitud  where id_paciente="+idpaciente+" and id_lab="+idLab;
         try{
             stamente=con.conexion().createStatement();

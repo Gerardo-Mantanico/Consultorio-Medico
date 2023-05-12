@@ -50,7 +50,7 @@ public class CreateRequestService extends ConnectionAttributes {
         //cargo al admin
         recharge.setMonto(new BigDecimal( porcentajeAdmin));
         //id del admin
-        recharge.setIdUser(8);
+        recharge.setIdUser(123);
         rechargeService.rechargePatien(recharge);
 
         // carga al lab
