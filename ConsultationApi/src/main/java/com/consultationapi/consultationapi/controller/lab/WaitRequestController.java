@@ -1,5 +1,6 @@
 package com.consultationapi.consultationapi.controller.lab;
 
+import com.consultationapi.consultationapi.controller.Controller;
 import com.consultationapi.consultationapi.model.lab.requestWait.RequestWait;
 import com.consultationapi.consultationapi.resources.ConstructionRequestWait;
 import com.consultationapi.consultationapi.utils.GsonUtils;
@@ -14,13 +15,16 @@ import java.io.IOException;
 @WebServlet("/requestWait/*")
 public class WaitRequestController extends HttpServlet {
     private GsonUtils<RequestWait> gsonUtils;
+    private Controller controlle;
     public WaitRequestController(){
         this.gsonUtils= new GsonUtils<>();
+        this.controlle= new Controller();
     }
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ConstructionRequestWait constructionRequestWait = new ConstructionRequestWait();
-        gsonUtils.sendAsJson(resp,constructionRequestWait.costruction("10"));
+        var id =controlle.obtenerId(req, resp);
+        gsonUtils.sendAsJson(resp,constructionRequestWait.costruction(id));
     }
 
     @Override

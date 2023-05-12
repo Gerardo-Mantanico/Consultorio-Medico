@@ -7,8 +7,8 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 public class ReadFile {
-        public  Data read(){
-            String fileName = "C:/Users/HP/Desktop/Json entrada.JSON";
+        public  Data read(String fileName){
+           // String fileName = "C:/Users/HP/Desktop/Json entrada.JSON";
             String jsonString = readFile(fileName);
             Gson gson = new Gson();
             Data data = gson.fromJson(jsonString, Data.class);

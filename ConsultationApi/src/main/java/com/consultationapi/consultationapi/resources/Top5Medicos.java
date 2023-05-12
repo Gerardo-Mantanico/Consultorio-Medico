@@ -17,7 +17,8 @@ public class Top5Medicos {
         ArrayList<Top5> list = new ArrayList<>(5);
         for( Top5 medicos: constrrucReport.Top5()){
                medicos.setCantidad(constrrucReport.cantidad(medicos.getId()));
-               var total= constrrucReport.total(medicos.getId()).subtract(medicos.getTotalConsultas());
+
+               var total= medicos.getTotalConsultas().subtract(constrrucReport.total(medicos.getId()));
                medicos.setTotal(total);
                list.add(medicos);
         }

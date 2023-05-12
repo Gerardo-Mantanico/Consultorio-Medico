@@ -13,12 +13,13 @@ import java.util.logging.Logger;
 public class ReadExam extends ConnectionAttributes {
     public ArrayList<ReporteEspecialidad> read(int id, LocalDate dateStart, LocalDate dateEnd){
         ArrayList<ReporteEspecialidad> list= new ArrayList<>();
-        String query="SELECT te.nombre AS tipo_examen, COUNT(*) AS cantidad  " +
-                "FROM CONSULTA c " +
-                "JOIN LISTA_EXAMENES_CONSULTA lec ON c.id = lec.id_consulta " +
-                "JOIN TIPOS_EXAMENES te ON lec.id_examen = te.id  " +
-                "WHERE c.fecha_incial BETWEEN '"+dateStart+"' AND '"+dateEnd+"' and  c.id_paciente="+id +
-                " GROUP BY tipo_examen;";
+        String query="SELECT TE.nombre AS tipo_examen, COUNT(LES.id_examen) AS cantidad_examenes " +
+                "FROM SOLICITUD_EXAMENES SE " +
+                "INNER JOIN LISTA_EXAMENES_SOLICITUD LES ON SE.id = LES.id_solicitud " +
+                "INNER JOIN TIPOS_EXAMENES TE ON LES.id_examen = TE.id " +
+                "WHERE SE.fecha_solicitada BETWEEN '"+dateStart+"' AND '"+dateEnd+"'" +
+                "  AND SE.id_paciente ="+id +
+                " GROUP BY TE.nombre;";
         try {
             stamente=con.conexion().createStatement();
             resultSet=stamente.executeQuery(query);

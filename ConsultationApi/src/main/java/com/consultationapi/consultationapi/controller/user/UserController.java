@@ -31,6 +31,7 @@ public class UserController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String pathInfo = request.getPathInfo();
+        System.out.println("direecion"+pathInfo);
         ReadTime readTime = new ReadTime();
         GsonUtils<ScheduleDoctor> gsonUtilsread=new GsonUtils<>();
         GsonUtils<CompleteInformation> gsonUtilsSpecialty =new GsonUtils<>();
@@ -41,6 +42,7 @@ public class UserController extends HttpServlet {
             return;
         }
         int typerUserId = processPath(request, response);
+        System.out.println(typerUserId);
         var horarios = readTime.readList(typerUserId);
         var specialty = readIformationDoctor.readlist(typerUserId);
         gsonTypeUser.sendAsJson(response, userService.perfil(typerUserId,horarios,specialty));
@@ -88,7 +90,7 @@ public class UserController extends HttpServlet {
         if (splits.length != 2) {
 
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return -1;
+            return -2;
         }
         String studentId = splits[1];
 
@@ -96,13 +98,13 @@ public class UserController extends HttpServlet {
             Integer.parseInt(studentId);
         } catch (NumberFormatException e) {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
-            return -1;
+            return -3;
         }
 
         if (userService.read(Integer.parseInt(studentId)) == null) {
 
             response.sendError(HttpServletResponse.SC_NOT_FOUND);
-            return -1;
+            return -4;
         }
         return Integer.parseInt(studentId);
     }

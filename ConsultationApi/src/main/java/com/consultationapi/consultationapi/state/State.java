@@ -9,5 +9,5 @@ package com.consultationapi.consultationapi.state;
  * @author HP
  */
 public enum State {
-    MEDICO,ADMINISTRADOR,LABORATORIO,PACIENTE,RECHAZAR,PENDIENTE_REVISION,ACTIVO,ACEPTADO,AGENDADA,PENDIENTE;
+    Doctor,Administrador,Laboratorio,Paciente,RECHAZAR,PENDIENTE_REVISION,ACTIVO,ACEPTADO,AGENDADA,PENDIENTE,DESACTIVO;
 }

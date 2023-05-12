@@ -15,7 +15,7 @@ public class Medico {
     private String password;
     private String direccion;
     private long cui;
-    private String telefono;
+    private long telefono;
     private String email;
     private String fecha_nacimiento;
     private double saldo;

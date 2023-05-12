@@ -48,7 +48,7 @@ public class ReadRecord extends ConnectionAttributes {
                 "JOIN TIPOS_EXAMENES te ON lec.id_examen = te.id " +
                 "WHERE c.id_paciente ="+idPa+"  and c.id="+idcon +
                 " AND c.fecha_incial  BETWEEN '"+dateStart+"' AND '"+dateEnd+"'"  +
-                "ORDER BY fecha_incial DESC;";
+                "ORDER BY fecha_incial DESC";
         String name;
         try {
             stamente=con.conexion().createStatement();

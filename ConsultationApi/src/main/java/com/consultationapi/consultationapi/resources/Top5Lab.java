@@ -20,6 +20,7 @@ public class Top5Lab {
         for( Top5 medicos: consultLab.Top5()){
             medicos.setCantidad(consultLab.cantidad(medicos.getId()));
             //falta restar el saldo xd
+
             medicos.setTotal(consultLab.total(medicos.getId()));
             list.add(medicos);
         }
