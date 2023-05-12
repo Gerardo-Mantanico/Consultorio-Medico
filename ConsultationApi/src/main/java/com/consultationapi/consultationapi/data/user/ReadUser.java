@@ -26,7 +26,7 @@ public class ReadUser  extends ConnectionAttributes {
                 user.setUserName(r.getString(3));
                 user.setPassword(r.getString(4));
                 user.setEmail(r.getString(5));
-                //user.setDate(r.getDate(6));
+                user.setDate(r.getDate(6));
                 user.setType(r.getString(7));
                 user.setSaldo( BigDecimal.valueOf(r.getDouble(8)));
                 user.setAddress(r.getString(10));

@@ -3,6 +3,7 @@ package com.consultationapi.consultationapi.controller.Login;
 import com.consultationapi.consultationapi.data.login.Consultl;
 import com.consultationapi.consultationapi.model.login.Login;
 import com.consultationapi.consultationapi.model.user.TypeUser;
+import com.consultationapi.consultationapi.resources.Encriptar;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -11,6 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/login/*")
 public class ControllerLogin extends HttpServlet {
@@ -27,6 +29,7 @@ public class ControllerLogin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         GsonUtils<Login> gsonUtilss=new GsonUtils<>();
+        Encriptar encriptar = new Encriptar();
         Consultl consultar = new Consultl();
         var login =gsonUtilss.readFromJson(request, Login.class);
         System.out.println(login);
@@ -35,13 +38,17 @@ public class ControllerLogin extends HttpServlet {
             response.setStatus(HttpServletResponse.SC_NOT_FOUND);
             return;
         }
-         if(user.getPassword().equals(login.getPassword())){
-             response.setStatus(HttpServletResponse.SC_OK);
-             gsonUtilss.sendAsJson(response,user);
-         }
-         else{
-             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
-         }
+        try {
+            if(user.getPassword().equals(encriptar.hashPassword(login.getPassword()))){
+                response.setStatus(HttpServletResponse.SC_OK);
+                gsonUtilss.sendAsJson(response,user);
+            }
+            else{
+                response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+            }
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
 
     }
 

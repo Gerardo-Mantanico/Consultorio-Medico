@@ -6,6 +6,7 @@ import com.consultationapi.consultationapi.data.user.ReadUser;
 import com.consultationapi.consultationapi.data.user.UpdataUser;
 import com.consultationapi.consultationapi.model.time.ScheduleDoctor;
 import com.consultationapi.consultationapi.model.user.TypeUser;
+import com.consultationapi.consultationapi.model.user.User;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
@@ -41,6 +42,7 @@ public class UserService {
         return listUser.listUser();
     }
     public TypeUser read(int id) {
+
         return  readUser.readTypeUser(id);
     }
     public void update(TypeUser typeUSer){
@@ -57,6 +59,11 @@ public class UserService {
               perfil= readUser.readTypeUser(id);
           }
 
+        return perfil;
+    }
+    public User admin(int id) {
+        User perfil = new User();
+        perfil=readUser.readAdmin(id);
         return perfil;
     }
 

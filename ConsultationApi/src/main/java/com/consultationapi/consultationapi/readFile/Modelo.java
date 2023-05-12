@@ -15,15 +15,17 @@ import com.consultationapi.consultationapi.model.model.*;
 import com.consultationapi.consultationapi.model.patient.Exam;
 import com.consultationapi.consultationapi.model.user.TypeUser;
 import com.consultationapi.consultationapi.model.user.User;
+import com.consultationapi.consultationapi.resources.Encriptar;
 import com.consultationapi.consultationapi.state.State;
 
 import java.math.BigDecimal;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Date;
 
 public class Modelo {
 
-    public void read(String path){
-
+    public void read(String path) throws NoSuchAlgorithmException {
+        Encriptar encriptar = new Encriptar();
         ReadFile readFile = new ReadFile();
         Data data = readFile.read(path);
 
@@ -33,7 +35,7 @@ public class Modelo {
             user.setId(admin.getId());
             user.setName(admin.getNombre());
             user.setUserName(admin.getUsername());
-            user.setPassword(admin.getPassword());
+            user.setPassword(encriptar.hashPassword(admin.getPassword()));
             user.setEmail(admin.getEmail());
             user.setDate(Date.valueOf(admin.getFecha_nacimiento()));
             user.setSaldo(BigDecimal.valueOf(admin.getSaldo()));
@@ -56,7 +58,7 @@ public class Modelo {
             typeUser.setId(medico.getId());
             typeUser.setName(medico.getNombre());
             typeUser.setUserName(medico.getUsername());
-            typeUser.setPassword(medico.getPassword());
+            typeUser.setPassword(encriptar.hashPassword(medico.getPassword()));
             typeUser.setAddress(medico.getDireccion());
             typeUser.setCui(medico.getCui());
             typeUser.setPhone(medico.getTelefono());
@@ -89,7 +91,7 @@ public class Modelo {
             typeUserr.setId(lab.getId());
             typeUserr.setName(lab.getNombre());
             typeUserr.setUserName(lab.getUsername());
-            typeUserr.setPassword(lab.getPassword());
+            typeUserr.setPassword( encriptar.hashPassword(lab.getPassword()));
             typeUserr.setAddress(lab.getDireccion());
             typeUserr.setCui(lab.getCui());
             typeUserr.setPhone(lab.getTelefono());
@@ -117,7 +119,7 @@ public class Modelo {
             typeUserr.setId(paciente.getId());
             typeUserr.setName(paciente.getNombre());
             typeUserr.setUserName(paciente.getUsername());
-            typeUserr.setPassword(paciente.getPassword());
+            typeUserr.setPassword( encriptar.hashPassword(paciente.getPassword()));
             typeUserr.setAddress(paciente.getDireccion());
             typeUserr.setCui(paciente.getCui());
             typeUserr.setPhone(paciente.getTelefono());

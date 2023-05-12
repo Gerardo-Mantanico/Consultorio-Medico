@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/files")
 @MultipartConfig
@@ -38,6 +39,8 @@ public class Archivo extends HttpServlet {
 
          }catch (IOException e){
              e.printStackTrace();
+         } catch (NoSuchAlgorithmException e) {
+             throw new RuntimeException(e);
          }
 
     }

@@ -4,6 +4,7 @@ import com.consultationapi.consultationapi.data.completeInformation.time.ReadTim
 import com.consultationapi.consultationapi.model.comple_information.CompleteInformation;
 import com.consultationapi.consultationapi.model.time.ScheduleDoctor;
 import com.consultationapi.consultationapi.model.user.TypeUser;
+import com.consultationapi.consultationapi.resources.Encriptar;
 import com.consultationapi.consultationapi.service.UserService;
 import com.consultationapi.consultationapi.utils.GsonUtils;
 import jakarta.servlet.ServletException;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 @WebServlet("/typeUser/*")
 public class UserController extends HttpServlet {
@@ -42,11 +44,12 @@ public class UserController extends HttpServlet {
             return;
         }
         int typerUserId = processPath(request, response);
-        System.out.println(typerUserId);
-        var horarios = readTime.readList(typerUserId);
-        var specialty = readIformationDoctor.readlist(typerUserId);
-        gsonTypeUser.sendAsJson(response, userService.perfil(typerUserId,horarios,specialty));
-        response.setStatus(HttpServletResponse.SC_OK);
+        if(typerUserId>=1){
+            var horarios = readTime.readList(typerUserId);
+            var specialty = readIformationDoctor.readlist(typerUserId);
+            gsonTypeUser.sendAsJson(response, userService.perfil(typerUserId,horarios,specialty));
+            response.setStatus(HttpServletResponse.SC_OK);
+        }
     }
 
     // POST TypeUser/
@@ -54,8 +57,13 @@ public class UserController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         var newUser =gsonTypeUser.readFromJson(request,TypeUser.class);
-            System.out.println("El objeto que recibimos es "+newUser);
-            if(userService.createUser(newUser)==true){
+        Encriptar encriptar = new Encriptar();
+        try {
+            newUser.setPassword(encriptar.hashPassword(newUser.getPassword()));
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+        if(userService.createUser(newUser)==true){
                 response.setStatus(HttpServletResponse.SC_CREATED);
                 gsonTypeUser.sendAsJson(response,newUser);
             }
@@ -100,10 +108,11 @@ public class UserController extends HttpServlet {
             response.sendError(HttpServletResponse.SC_BAD_REQUEST);
             return -3;
         }
-
+            System.out.println("------------"+studentId);
         if (userService.read(Integer.parseInt(studentId)) == null) {
-
-            response.sendError(HttpServletResponse.SC_NOT_FOUND);
+            gsonTypeUser.sendAsJson(response, userService.admin(Integer.parseInt(studentId)));
+            response.setStatus(HttpServletResponse.SC_OK);
+           // response.sendError(HttpServletResponse.SC_NOT_FOUND);
             return -4;
         }
         return Integer.parseInt(studentId);
